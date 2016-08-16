@@ -36,6 +36,11 @@
   "author": "Joaquim d'Souza",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "lodash": "^4.15.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:joaquimds/joaquimdsouza.com.git"
   }
 }

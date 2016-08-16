@@ -1,6 +1,11 @@
 import types from './types'
 
-export const startle = () => ({ type: types.STARTLE })
-export const startleAttempt = (phrase) => ({ type: types.STARTLE_ATTEMPT, phrase })
+export const startle = (count) => ({ type: types.STARTLE, count })
+export const startleWithPhrase = (phrase) => ({ type: types.STARTLE_ATTEMPT, phrase })
 export const startleSuccess = () => ({ type: types.STARTLE_SUCCESS })
-export const startleFailed = () => ({ type: types.STARTLE_FAILED })
+export const startleFailed = (reason) => ({ type: types.STARTLE_FAILED, reason })
+
+export const chooseStartleCount = (count) => ({ type: types.CHOOSE_STARTLE_COUNT, count })
+export const toggleStartleOptions = (show) => {
+  return show ? { type: types.SHOW_STARTLE_OPTIONS } : { type: types.HIDE_STARTLE_OPTIONS }
+}

@@ -9,7 +9,7 @@ const joaquim = (state = {}, action) => {
     case types.STARTLE_SUCCESS:
       return { startled: true }
     case types.STARTLE_FAILED:
-      return { focussed: true }
+      return { notStartledReason: action.reason }
     default:
       return state
   }
