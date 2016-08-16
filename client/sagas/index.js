@@ -30,7 +30,7 @@ function * startle (action) {
   yield delay(2000) // wait 2s before displaying whether joaquim was startled or not
   const test = Math.random()
   const threshold = action.count / 10
-  const success = test / threshold // higher chance of success if count is higher
+  const success = test < threshold // higher chance of success if count is higher
   if (success) {
     startledNoise.play()
     yield put(startleSuccess())
