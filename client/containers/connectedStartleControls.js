@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { startle, toggleStartleOptions, chooseStartleCount } from '../actions'
+import { startle, toggleStartleOptions, changeStartleCount } from '../actions'
 import StartleControls from '../components/startleControls'
 
 const mapStateToProps = (state) => {
@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch) => {
     toggleStartleOptions: (show) => {
       dispatch(toggleStartleOptions(show))
     },
-    onChange: (count) => {
-      dispatch(chooseStartleCount(count))
+    changeStartleCount: (count) => {
+      dispatch(changeStartleCount(count))
     }
   }
 }

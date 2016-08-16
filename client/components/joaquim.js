@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import joaquimUrl from '../assets/joaquim.jpg'
+import joaquimUrl from '../assets/images/joaquim.jpg'
 import ConnectedStartleControls from '../containers/connectedStartleControls'
 
 const Joaquim = ({ joaquim }) => {

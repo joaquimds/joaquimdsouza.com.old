@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
 
-const StartleControls = ({ startleOptions, doStartle, toggleStartleOptions, onChange }) => {
+const StartleControls = ({ startleOptions, doStartle, toggleStartleOptions, changeStartleCount }) => {
   let count = startleOptions.count
   let onClickToggle = (e) => {
     e.preventDefault() // stop default link clicking behaviour
@@ -11,7 +11,7 @@ const StartleControls = ({ startleOptions, doStartle, toggleStartleOptions, onCh
     doStartle(count)  // startle joaquim with the selected startle count
   }
   let onChangeStartleCount = (e) => {
-    onChange(e.target.value)  // update state with new startle count
+    changeStartleCount(e.target.value)  // update state with new startle count
   }
   return (
     <div id="startle-controls">
@@ -35,7 +35,7 @@ StartleControls.propTypes = {
   doStartle: PropTypes.func.isRequired,
   toggleStartleOptions: PropTypes.func.isRequired,
   startleOptions: PropTypes.object.isRequired,
-  onChange: PropTypes.func.isRequired
+  changeStartleCount: PropTypes.func.isRequired
 }
 
 export default StartleControls

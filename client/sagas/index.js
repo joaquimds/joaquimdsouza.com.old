@@ -2,9 +2,9 @@ import { takeLatest, delay } from 'redux-saga'
 import { put } from 'redux-saga/effects'
 import { startleWithPhrase, startleSuccess, startleFailed } from '../actions'
 import actionTypes from '../actions/types'
-import startledNoiseUrl from '../assets/startledNoise.mp3'
-import oneSecUrl from '../assets/oneSec.mp3'
-import annoyedUrl from '../assets/annoyed.mp3'
+import startledNoiseUrl from '../assets/sounds/startledNoise.mp3'
+import oneSecUrl from '../assets/sounds/oneSec.mp3'
+import annoyedUrl from '../assets/sounds/annoyed.mp3'
 
 const startleSequence = [ 'Hey Joaquim!', 'Hey!' ]
 const startledNoise = new window.Audio(startledNoiseUrl)

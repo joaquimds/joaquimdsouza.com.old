@@ -5,7 +5,7 @@ export const startleWithPhrase = (phrase) => ({ type: types.STARTLE_ATTEMPT, phr
 export const startleSuccess = () => ({ type: types.STARTLE_SUCCESS })
 export const startleFailed = (reason) => ({ type: types.STARTLE_FAILED, reason })
 
-export const chooseStartleCount = (count) => ({ type: types.CHOOSE_STARTLE_COUNT, count })
+export const changeStartleCount = (count) => ({ type: types.CHOOSE_STARTLE_COUNT, count })
 export const toggleStartleOptions = (show) => {
   return show ? { type: types.SHOW_STARTLE_OPTIONS } : { type: types.HIDE_STARTLE_OPTIONS }
 }
