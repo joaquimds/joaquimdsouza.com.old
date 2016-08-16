@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import joaquimUrl from '../assets/joaquim.jpg'
 
 const Joaquim = ({ joaquim, onClick }) => {
   let userStatus = joaquim.startling ? <h6>You attempted to startle Joaquim...</h6> : ''
@@ -7,7 +8,7 @@ const Joaquim = ({ joaquim, onClick }) => {
     : joaquim.focussed ? <h6>Joaquim was too focussed!</h6> : ''
   return (
     <div id="joaquim">
-      <img width="300px" src="/joaquim.jpg" className="m-t-1 m-b-1" />
+      <img width="300px" src={joaquimUrl} className="m-t-1 m-b-1" />
       {userStatus}
       {startleStatus}
       {joaquimStatus}

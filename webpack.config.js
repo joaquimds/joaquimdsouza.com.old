@@ -1,4 +1,6 @@
 var path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+
 module.exports = {
   entry: ['babel-polyfill', './client/index.js'],
   output: {
@@ -18,7 +20,15 @@ module.exports = {
       {
         test: /\.scss$/,
         loaders: ['style', 'css', 'sass']
+      },
+      {
+        test: /(\.jpg|\.png|\.mp3)$/,
+        loaders: ['file']
       }
     ]
-  }
+  },
+  plugins: [new HtmlWebpackPlugin({
+    template: path.resolve(__dirname, 'client/assets/index.html'),
+    favicon: path.resolve(__dirname, 'client/assets/favicon.ico')
+  })]
 }
