@@ -1,12 +1,14 @@
+import types from '../actions/types'
+
 const joaquim = (state = {}, action) => {
   switch (action.type) {
-    case 'STARTLE':
+    case types.STARTLE:
       return { startling: true }
-    case 'STARTLE_ATTEMPT':
-      return { startling: true, startleText: action.text }
-    case 'STARTLE_SUCCESS':
+    case types.STARTLE_ATTEMPT:
+      return { startling: true, startlePhrase: action.phrase }
+    case types.STARTLE_SUCCESS:
       return { startled: true }
-    case 'STARTLE_FAILED':
+    case types.STARTLE_FAILED:
       return { focussed: true }
     default:
       return state
