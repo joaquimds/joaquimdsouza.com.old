@@ -9,7 +9,7 @@ const Joaquim = ({ joaquim }) => {
     : joaquim.notStartledReason ? <h6>{joaquim.notStartledReason}</h6> : ''
   return (
     <div id="joaquim">
-      <img width="300px" src={joaquimUrl} className="m-t-1 m-b-1" />
+      <img width="75%" src={joaquimUrl} className="m-t-1 m-b-1" />
       {userStatus}
       {startleStatus}
       {joaquimStatus}

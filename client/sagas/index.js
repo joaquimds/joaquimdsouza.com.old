@@ -13,31 +13,32 @@ const annoyed = new window.Audio(annoyedUrl)
 
 function * startle (action) {
   let phraseParts = [] // contains an array of phrases said to joaquim
+  const joaquimsFocus = Math.random()
+  yield delay(1000)
   for (let i = 0; i < action.count; ++i) { // each iteration adds a phrase into the parts
-    yield delay(1000) // delay 1s between displaying new phrase
     if (i < startleSequence.length) {
       phraseParts.push(startleSequence[i]) // have a couple of unique phrases at the start to make it more interesting
     } else {
       phraseParts.push('Joaquim!')
     }
     yield put(startleWithPhrase(phraseParts.join(' '))) // display new phrase to user
-    if (phraseParts.length > 7) {
-      yield delay(500)  // quit loop if it's about to go into its 9th iteration
-      annoyed.play()
-      return yield put(startleFailed('Joaquim got annoyed!'))
+    yield delay(1000)
+    const distractingPower = i / 10 // chance of success gets higher each iteration
+    const success = distractingPower > joaquimsFocus
+    if (success) {
+      yield delay(500)
+      const annoyedTest = Math.random()
+      if (annoyedTest < 0.5) {
+        annoyed.play()
+        return yield put(startleFailed('Joaquim got annoyed!'))
+      } else {
+        startledNoise.play()
+        return yield put(startleSuccess())
+      }
     }
   }
-  yield delay(2000) // wait 2s before displaying whether joaquim was startled or not
-  const test = Math.random()
-  const threshold = action.count / 10
-  const success = test < threshold // higher chance of success if count is higher
-  if (success) {
-    startledNoise.play()
-    yield put(startleSuccess())
-  } else {
-    oneSec.play()
-    yield put(startleFailed('Joaquim was too focussed!'))
-  }
+  oneSec.play()
+  yield put(startleFailed('Joaquim was too focussed!'))
 }
 
 function * startleSaga () {
