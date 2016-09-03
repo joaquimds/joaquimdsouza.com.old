@@ -5,11 +5,19 @@ import actionTypes from '../actions/types'
 import startledNoiseUrl from '../assets/sounds/startledNoise.mp3'
 import oneSecUrl from '../assets/sounds/oneSec.mp3'
 import annoyedUrl from '../assets/sounds/annoyed.mp3'
+import { Howl } from 'howler'
 
 const startleSequence = [ 'Hey Joaquim!', 'Hey!' ]
-const startledNoise = new window.Audio(startledNoiseUrl)
-const oneSec = new window.Audio(oneSecUrl)
-const annoyed = new window.Audio(annoyedUrl)
+const startledNoise = new Howl({
+  src: startledNoiseUrl
+})
+const oneSec = new Howl({
+  src: oneSecUrl,
+  volume: 2
+})
+const annoyed = new Howl({
+  src: annoyedUrl
+})
 
 function * startle (action) {
   let phraseParts = [] // contains an array of phrases said to joaquim
