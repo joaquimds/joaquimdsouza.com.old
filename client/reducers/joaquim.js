@@ -8,6 +8,8 @@ const joaquim = (state = {}, action) => {
       return { startling: true, startlePhrase: action.phrase }
     case types.STARTLE_SUCCESS:
       return { startled: true }
+    case types.STARTLE_RESET:
+      return {}
     case types.STARTLE_FAILED:
       return { notStartledReason: action.reason }
     default:
