@@ -6,6 +6,7 @@ body {
 
 .github-ribbon {
   position: absolute;
+  width: 20%;
   top: 0;
   left: 0;
   border: 0;
@@ -76,7 +77,13 @@ body {
 }
 
 #startle-controls {
-  .form-control {
-    width: 100px;
+  .form-group {
+    margin: 0 auto;
+    width: 80%;
+
+    .form-control {
+      display: inline-block;
+      width: 200px;
+    }
   }
 }

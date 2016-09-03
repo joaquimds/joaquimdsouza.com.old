@@ -20,9 +20,9 @@ const StartleControls = ({ startleOptions, doStartle, toggleStartleOptions, chan
         {startleOptions.show ? 'Hide advanced options' : 'Show advanced options'}
       </a>
       {startleOptions.show ? (
-        <div className="form-group form-inline">
-          <label htmlFor="startleCount">Times to call Joaquim: </label>
-          <select className="form-control m-l-1" id="startleCount" onChange={onChangeStartleCount} value={count}>
+        <div className="form-group">
+          <label htmlFor="startleCount" className="m-r-1">Times to call Joaquim: </label>
+          <select className="form-control" id="startleCount" onChange={onChangeStartleCount} value={count}>
             {_.range(1, 11).map((i) => <option key={i}>{i}</option>)}
           </select>
         </div>
