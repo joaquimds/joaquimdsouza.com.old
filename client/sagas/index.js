@@ -36,7 +36,7 @@ function * startle (action) {
         startledNoise.play()
         yield put(startleSuccess())
       }
-      break;
+      break
     }
   }
   if (!success) {

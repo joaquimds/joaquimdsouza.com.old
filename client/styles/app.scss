@@ -4,6 +4,13 @@ body {
   background-color: #f6f6f6;
 }
 
+.github-ribbon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+}
+
 .container {
   text-align: center;
 }
@@ -11,6 +18,7 @@ body {
 #welcome {
   font-size: 4vw;
 }
+
 #advice {
   font-size: 3vw;
 }
@@ -29,7 +37,7 @@ body {
       position: relative;
 
       &.flipped {
-          transform: rotateY(180deg);
+        transform: rotateY(180deg);
       }
 
       .img {

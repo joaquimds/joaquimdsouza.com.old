@@ -19,7 +19,7 @@ class FlippableImage extends Component {
       <div className="flippable-image m-t-1 m-b-1">
         <div className={'flipper ' + (this.flipped ? 'flipped' : '')}>
           <ReactCSSTransitionGroup transitionName="flip" transitionEnterTimeout={1500} transitionLeaveTimeout={1500}>
-            <div key={this.props.image} style={{backgroundImage: 'url(' + this.props.image + ')'}} className={'img ' + (this.flipped ? 'back' : 'front')}/>
+            <div key={this.props.image} style={{backgroundImage: 'url(' + this.props.image + ')'}} className={'img ' + (this.flipped ? 'back' : 'front')} />
           </ReactCSSTransitionGroup>
         </div>
       </div>
