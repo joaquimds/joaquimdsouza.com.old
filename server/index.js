@@ -1,11 +1,5 @@
-import express from 'express'
-import path from 'path'
+import { server } from './server'
 
-const app = express()
-
-const assetPath = path.resolve(__dirname, '..', 'client')
-app.use(express.static(assetPath))
-
-app.listen(3000, function () {
+server.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
