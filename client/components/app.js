@@ -7,6 +7,7 @@ const App = () => (
     <h1>Welcome to joaquimdsouza.com.</h1>
     <h2>This site works best on Google Chrome or Firefox with the sound turned up.</h2>
     <ConnectedJoaquim />
+    <h1>Web Walkie-Talkie</h1>
     <h2>Hit connect to switch on your walkie-talkie</h2>
     <ConnectedWalkieTalkie />
     <a href="https://github.com/joaquimds/joaquimdsouza.com">
