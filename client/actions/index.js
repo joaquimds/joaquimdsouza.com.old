@@ -12,7 +12,8 @@ export const toggleStartleOptions = (show) => {
   return show ? { type: types.SHOW_STARTLE_OPTIONS } : { type: types.HIDE_STARTLE_OPTIONS }
 }
 
-export const saveRecording = (data) => ({ type: types.SAVE_RECORDING, data })
-export const hideRecordingSaved = (audio) => ({ type: types.HIDE_RECORDING_SAVED })
-export const showRecordingSaved = (audio) => ({ type: types.SHOW_RECORDING_SAVED })
+export const startRecording = () => ({ type: types.START_RECORDING })
+export const stopRecording = () => ({ type: types.STOP_RECORDING })
+export const sendRecording = (data) => ({ type: types.SEND_RECORDING, data })
+export const clearReceivedAudio = () => ({ type: types.CLEAR_RECEIVED_AUDIO })
 export const newAudioMessage = (audioUrl) => ({ type: types.NEW_AUDIO_MESSAGE, audioUrl })

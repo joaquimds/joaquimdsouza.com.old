@@ -1,6 +1,6 @@
 import { takeLatest, delay } from 'redux-saga'
 import { put } from 'redux-saga/effects'
-import { showRecordingSaved, hideRecordingSaved, newAudioMessage } from '../actions'
+import { newAudioMessage } from '../actions'
 import actionTypes from '../actions/types'
 import socket from '../websocket'
 import { AUDIO } from '../../server/events'
@@ -9,7 +9,6 @@ const mimeType = 'audio/ogg'
 function * socketSaga () {
   let _resolve
   socket.on(AUDIO, (event) => {
-    console.log('got audio event', event)
     if (_resolve) {
       _resolve(event.data)
     }
@@ -26,15 +25,12 @@ function * socketSaga () {
   }
 }
 
-function * saveRecording (action) {
+const sendRecording = (action) => {
   socket.emit(AUDIO, action.data)
-  yield put(showRecordingSaved())
-  yield delay(1000)
-  yield put(hideRecordingSaved())
 }
 
 function * saveRecordingSaga () {
-  yield * takeLatest(actionTypes.SAVE_RECORDING, saveRecording)
+  yield * takeLatest(actionTypes.SEND_RECORDING, sendRecording)
 }
 
 function * audioSaga () {
