@@ -14,11 +14,8 @@ class WalkieTalkie extends Component {
     this.playOnce = this.playOnce.bind(this)
     this.getElements = this.getElements.bind(this)
     this.render = this.render.bind(this)
+    this.connect = this.connect.bind(this)
     this.state = { mediaRecorder: null }
-  }
-
-  componentWillMount () {
-    this.resetMediaRecorder()
   }
 
   resetMediaRecorder () {
@@ -68,20 +65,23 @@ class WalkieTalkie extends Component {
     }
   }
 
+  connect () {
+    this.resetMediaRecorder()
+    this.props.connect()
+  }
+
   getElements () {
     const onClickRecord = this.props.recording ? this.stopRecording : this.startRecording
-    const onClickConnect = this.props.connected ? this.props.disconnect : this.props.connect
+    const onClickConnect = this.props.connected ? this.props.disconnect : this.connect
     let elements = [<button key="connect" onClick={onClickConnect} className="btn btn-primary">{this.props.connected ? 'Disconnect' : 'Connect'}</button>]
     if (this.props.connected) {
       if (this.state.mediaRecorder) {
-        elements.push(<button key="record" onClick={onClickRecord}
-                              className="btn btn-danger">{this.props.recording ? 'Recording' : 'Record'}</button>)
+        elements.push(<button key="record" onClick={onClickRecord} className="btn btn-danger">{this.props.recording ? 'Recording' : 'Record'}</button>)
       } else {
-        elements.push(<button key="unavailable" className="btn btn-secondary" onClick={this.resetMediaRecorder}>
-          Recording Unavailable - Retry?</button>)
+        elements.push(<button key="unavailable" className="btn btn-secondary" onClick={this.resetMediaRecorder}>Recording Unavailable - Retry?</button>)
       }
       if (this.props.audioUrl) {
-        elements.push(<audio key="received" src={this.props.audioUrl} ref={this.playOnce}/>)
+        elements.push(<audio key="received" src={this.props.audioUrl} ref={this.playOnce} />)
       }
     }
     return elements
