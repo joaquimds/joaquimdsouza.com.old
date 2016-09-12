@@ -11,7 +11,6 @@ class WalkieTalkie extends Component {
     this.stopRecording = this.stopRecording.bind(this)
     this.sendRecording = this.sendRecording.bind(this)
     this.resetMediaRecorder = this.resetMediaRecorder.bind(this)
-    this.playOnce = this.playOnce.bind(this)
     this.getElements = this.getElements.bind(this)
     this.render = this.render.bind(this)
     this.connect = this.connect.bind(this)
@@ -56,14 +55,6 @@ class WalkieTalkie extends Component {
     this.props.sendRecording(blob)
   }
 
-  playOnce (node) {
-    if (node) {
-      node.addEventListener('ended', () => {
-        this.props.clearReceivedAudio()
-      })
-    }
-  }
-
   connect () {
     this.resetMediaRecorder()
     this.props.connect()
@@ -80,7 +71,19 @@ class WalkieTalkie extends Component {
         elements.push(<button key="unavailable" className="btn btn-secondary" onClick={this.resetMediaRecorder}>Recording Unavailable - Retry?</button>)
       }
       if (this.props.audioUrl) {
-        elements.push(<audio key="received" autoPlay controls src={this.props.audioUrl} ref={this.playOnce} />)
+        let audio
+        const playOnce = (node) => {
+          if (node) {
+            audio = node
+            node.addEventListener('ended', () => {
+              this.props.clearReceivedAudio()
+            })
+          }
+        }
+        elements.push(<audio key="received" autoPlay src={this.props.audioUrl} ref={playOnce} />)
+        if (window.mobilecheck()) {
+          elements.push(<button key="play" onClick={function () { if (audio) { audio.play() } }} className="btn btn-success">Play Message</button>)
+        }
       }
     }
     return elements
