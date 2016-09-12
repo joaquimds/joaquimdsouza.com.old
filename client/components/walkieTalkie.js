@@ -12,7 +12,7 @@ class WalkieTalkie extends Component {
     this.sendRecording = this.sendRecording.bind(this)
     this.resetMediaRecorder = this.resetMediaRecorder.bind(this)
     this.playOnce = this.playOnce.bind(this)
-    this.getButtonBar = this.getButtonBar.bind(this)
+    this.getElements = this.getElements.bind(this)
     this.render = this.render.bind(this)
     this.state = { mediaRecorder: null }
   }
@@ -68,26 +68,30 @@ class WalkieTalkie extends Component {
     }
   }
 
-  getButtonBar () {
-    const onClick = this.props.recording ? this.stopRecording : this.startRecording
-    let elements = []
-    let audio
-    if (this.state.mediaRecorder) {
-      elements.push(<button key="record" onClick={onClick} className="btn btn-danger">{this.props.recording ? 'Recording' : 'Record'}</button>)
-    } else {
-      elements.push(<button key="unavailable" className="btn btn-secondary" onClick={this.resetMediaRecorder}>Recording Unavailable - Retry?</button>)
-    }
-    if (this.props.audioUrl) {
-      elements.push(<audio key="received" src={this.props.audioUrl} ref={this.playOnce} />)
+  getElements () {
+    const onClickRecord = this.props.recording ? this.stopRecording : this.startRecording
+    const onClickConnect = this.props.connected ? this.props.disconnect : this.props.connect
+    let elements = [<button key="connect" onClick={onClickConnect} className="btn btn-primary">{this.props.connected ? 'Disconnect' : 'Connect'}</button>]
+    if (this.props.connected) {
+      if (this.state.mediaRecorder) {
+        elements.push(<button key="record" onClick={onClickRecord}
+                              className="btn btn-danger">{this.props.recording ? 'Recording' : 'Record'}</button>)
+      } else {
+        elements.push(<button key="unavailable" className="btn btn-secondary" onClick={this.resetMediaRecorder}>
+          Recording Unavailable - Retry?</button>)
+      }
+      if (this.props.audioUrl) {
+        elements.push(<audio key="received" src={this.props.audioUrl} ref={this.playOnce}/>)
+      }
     }
     return elements
   }
 
   render () {
-    let elements = this.getButtonBar()
+    let elements = this.getElements()
     return (
       <div className="audio-recorder">
-        <div className="buttons">
+        <div>
           {elements}
         </div>
       </div>
@@ -96,7 +100,10 @@ class WalkieTalkie extends Component {
 }
 
 WalkieTalkie.propTypes = {
+  connected: PropTypes.bool,
   recording: PropTypes.bool,
+  connect: PropTypes.func.isRequired,
+  disconnect: PropTypes.func.isRequired,
   startRecording: PropTypes.func.isRequired,
   stopRecording: PropTypes.func.isRequired,
   clearReceivedAudio: PropTypes.func.isRequired,

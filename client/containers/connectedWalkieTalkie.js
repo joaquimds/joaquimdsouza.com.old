@@ -1,5 +1,12 @@
 import { connect } from 'react-redux'
-import { sendRecording, startRecording, stopRecording, clearReceivedAudio } from '../actions'
+import {
+  sendRecording,
+  startRecording,
+  stopRecording,
+  clearReceivedAudio,
+  connectWalkieTalkie,
+  disconnectWalkieTalkie
+} from '../actions'
 import WalkieTalkie from '../components/walkieTalkie'
 
 const mapStateToProps = (state) => {
@@ -8,6 +15,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    connect: () => {
+      dispatch(connectWalkieTalkie())
+    },
+    disconnect: () => {
+      dispatch(disconnectWalkieTalkie())
+    },
     startRecording: () => {
       dispatch(startRecording())
     },

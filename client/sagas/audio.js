@@ -1,4 +1,4 @@
-import { takeLatest, delay } from 'redux-saga'
+import { takeLatest } from 'redux-saga'
 import { put } from 'redux-saga/effects'
 import { newAudioMessage } from '../actions'
 import actionTypes from '../actions/types'
@@ -6,7 +6,7 @@ import socket from '../websocket'
 import { AUDIO } from '../../server/events'
 const mimeType = 'audio/ogg'
 
-function * socketSaga () {
+function * receiveRecordingSaga () {
   let _resolve
   socket.on(AUDIO, (event) => {
     if (_resolve) {
@@ -34,7 +34,7 @@ function * saveRecordingSaga () {
 }
 
 function * audioSaga () {
-  yield [saveRecordingSaga(), socketSaga()]
+  yield [saveRecordingSaga(), receiveRecordingSaga()]
 }
 
 export default audioSaga

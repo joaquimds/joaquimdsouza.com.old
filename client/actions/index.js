@@ -12,6 +12,8 @@ export const toggleStartleOptions = (show) => {
   return show ? { type: types.SHOW_STARTLE_OPTIONS } : { type: types.HIDE_STARTLE_OPTIONS }
 }
 
+export const connectWalkieTalkie = () => ({ type: types.CONNECT_WALKIE_TALKIE })
+export const disconnectWalkieTalkie = () => ({ type: types.DISCONNECT_WALKIE_TALKIE })
 export const startRecording = () => ({ type: types.START_RECORDING })
 export const stopRecording = () => ({ type: types.STOP_RECORDING })
 export const sendRecording = (data) => ({ type: types.SEND_RECORDING, data })
