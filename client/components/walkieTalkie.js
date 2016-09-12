@@ -58,7 +58,6 @@ class WalkieTalkie extends Component {
 
   playOnce (node) {
     if (node) {
-      //node.play()
       node.addEventListener('ended', () => {
         this.props.clearReceivedAudio()
       })
@@ -81,7 +80,7 @@ class WalkieTalkie extends Component {
         elements.push(<button key="unavailable" className="btn btn-secondary" onClick={this.resetMediaRecorder}>Recording Unavailable - Retry?</button>)
       }
       if (this.props.audioUrl) {
-        elements.push(<audio key="received" controls src={this.props.audioUrl} ref={this.playOnce} />)
+        elements.push(<audio key="received" autoPlay controls src={this.props.audioUrl} ref={this.playOnce} />)
       }
     }
     return elements
