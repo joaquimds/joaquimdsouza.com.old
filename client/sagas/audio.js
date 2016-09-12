@@ -9,7 +9,7 @@ const mimeType = 'audio/ogg'
 function * socketSaga () {
   let _resolve
   socket.on(AUDIO, (event) => {
-    console.log('got websocket audio event', event)
+    console.log('got audio event', event)
     if (_resolve) {
       _resolve(event.data)
     }
@@ -27,11 +27,7 @@ function * socketSaga () {
 }
 
 function * saveRecording (action) {
-  const oReq = new window.XMLHttpRequest()
-  const formData = new window.FormData()
-  oReq.open('POST', '/api/audio', true)
-  formData.append('audio', action.audio)
-  oReq.send(formData)
+  socket.emit(AUDIO, action.data)
   yield put(showRecordingSaved())
   yield delay(1000)
   yield put(hideRecordingSaved())

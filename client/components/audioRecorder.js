@@ -82,6 +82,9 @@ class AudioRecorder extends Component {
       elements.push(<button key="play" onClick={function () { audio.play() }} className="btn btn-success">Play</button>)
       elements.push(<button key="save" onClick={this.saveRecordingRemote} className="btn btn-primary">{this.props.saved ? 'Saved' : 'Save'}</button>)
     }
+    if (this.props.receivedAudioUrl) {
+      elements.push(<audio key="received" src={this.props.receivedAudioUrl} ref={function (node) { if (node) { node.play() } }} />)
+    }
     return elements
   }
 
@@ -99,7 +102,8 @@ class AudioRecorder extends Component {
 
 AudioRecorder.propTypes = {
   saveRecording: PropTypes.func.isRequired,
-  saved: PropTypes.bool
+  saved: PropTypes.bool,
+  receivedAudioUrl: PropTypes.string
 }
 
 export default AudioRecorder

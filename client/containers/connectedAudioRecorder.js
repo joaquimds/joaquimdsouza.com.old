@@ -4,14 +4,15 @@ import AudioRecorder from '../components/audioRecorder'
 
 const mapStateToProps = (state) => {
   return {
-    saved: state.audioRecorder.saved
+    saved: state.audioRecorder.saved,
+    receivedAudioUrl: state.audioRecorder.audioUrl
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveRecording: (audio) => {
-      dispatch(saveRecording(audio))
+    saveRecording: (data) => {
+      dispatch(saveRecording(data))
     }
   }
 }
