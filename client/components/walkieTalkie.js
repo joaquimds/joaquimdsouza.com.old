@@ -80,10 +80,8 @@ class WalkieTalkie extends Component {
             })
           }
         }
-        elements.push(<audio key="received" autoPlay src={this.props.audioUrl} ref={playOnce} />)
-        if (window.mobilecheck()) {
-          elements.push(<button key="play" onClick={function () { if (audio) { audio.play() } }} className="btn btn-success">Play Message</button>)
-        }
+        elements.push(<audio key="received" src={this.props.audioUrl} ref={playOnce} />)
+        elements.push(<button key="play" onClick={function () { if (audio) { audio.play() } }} className="btn btn-success">Play Message</button>)
       }
     }
     return elements
